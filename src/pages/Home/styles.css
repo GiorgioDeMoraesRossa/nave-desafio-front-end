@@ -1,0 +1,36 @@
+.home-container {
+  display: flex;
+  flex-direction: column;
+
+  padding: 0 2rem;
+}
+
+.home-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  margin-bottom: 2rem;
+}
+
+.home-header h1 {
+  font-size: 2.5rem;
+}
+
+.home-header button {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+
+  border: 0;
+  font-size: 0.9rem;
+
+  width: 11rem;
+}
+
+.navers-container {
+  display: grid;
+  grid-template-columns: repeat(4, 19rem);
+  /* media query para diminuir colunas*/
+  align-content: center;
+  justify-content: space-between;
+}
