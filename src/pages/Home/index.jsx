@@ -1,9 +1,11 @@
 /* */
+import { useState } from "react";
 import Header from "../../components/Header";
 import NaverCard from "../../components/NaverCard";
+import NaverModal from "../../components/NaverModal";
 import "./styles.css";
 
-const testData = [
+const navers = [
   {
     id: "3b6be004-2afe-4522-b718-d1b1e472731a",
     name: "Christian Tavares",
@@ -108,20 +110,35 @@ const testData = [
 ];
 
 export default function Home() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedNaverIndex, setSelectedNaverIndex] = useState(0);
+
+  function handleCardClick(naverIndex) {
+    setSelectedNaverIndex(naverIndex);
+    console.log(selectedNaverIndex);
+    console.log(navers[selectedNaverIndex]);
+
+    setIsModalOpen(true);
+  }
+
   return (
     <div>
       <Header />
+      {isModalOpen && (
+        <NaverModal
+          setModal={setIsModalOpen}
+          naver={navers[selectedNaverIndex]}
+        />
+      )}
       <div className="home-container">
         <div className="home-header">
           <h1>Navers</h1>
           <button>Adicionar Naver</button>
         </div>
         <div className="navers-container">
-          {/* render navers cards */}
-          <NaverCard />
-          <NaverCard />
-          <NaverCard />
-          <NaverCard />
+          {navers.map((naver, index) => (
+            <NaverCard key={naver.id} onClick={() => handleCardClick(index)} />
+          ))}
         </div>
       </div>
     </div>

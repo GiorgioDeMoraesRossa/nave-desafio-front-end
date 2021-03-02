@@ -12,6 +12,8 @@
 .card-container img {
   width: 100%;
   margin-bottom: 0.5rem;
+
+  cursor: pointer;
 }
 
 .card-container span {

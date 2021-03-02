@@ -4,6 +4,7 @@ import "./styles.css";
 
 export default function Login() {
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const { Login } = useContext(AuthContext);
 
   function handleSubmit() {
@@ -21,7 +22,10 @@ export default function Login() {
           placeholder="E-mail"
         />
         <label>Senha</label>
-        <input onChange={(e) => setEmail(e.target.value)} placeholder="Senha" />
+        <input
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Senha"
+        />
         <button onClick={handleSubmit}>Entrar</button>
       </div>
     </div>
