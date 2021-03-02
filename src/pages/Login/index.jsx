@@ -1,5 +1,6 @@
 import { useState, useContext } from "react";
 import { AuthContext } from "../../contexts/authContext";
+import "./styles.css";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -11,10 +12,18 @@ export default function Login() {
   }
 
   return (
-    <div>
-      Login
-      <input onChange={(e) => setEmail(e.target.value)} />
-      <button onClick={handleSubmit}>Entrar</button>
+    <div className="login-container">
+      <div className="login-content">
+        <img src="/logo.svg" alt="Logo da Nave.rs" />
+        <label>E-mail</label>
+        <input
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="E-mail"
+        />
+        <label>Senha</label>
+        <input onChange={(e) => setEmail(e.target.value)} placeholder="Senha" />
+        <button onClick={handleSubmit}>Entrar</button>
+      </div>
     </div>
   );
 }
