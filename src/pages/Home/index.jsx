@@ -1,8 +1,13 @@
 /* */
 import { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+
 import Header from "../../components/Header";
 import NaverCard from "../../components/NaverCard";
 import NaverModal from "../../components/NaverModal";
+import ConfirmationModal from "../../components/ConfirmationModal";
+import MessageModal from "../../components/MessageModal";
+
 import "./styles.css";
 
 const navers = [
@@ -110,34 +115,78 @@ const navers = [
 ];
 
 export default function Home() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isNaverModalOpen, setIsNaverModalOpen] = useState(false);
+  const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
+  const [isMessageModalOpen, setIsMessageModalOpen] = useState(false);
   const [selectedNaverIndex, setSelectedNaverIndex] = useState(0);
+  const history = useHistory();
 
   function handleCardClick(naverIndex) {
     setSelectedNaverIndex(naverIndex);
-    console.log(selectedNaverIndex);
-    console.log(navers[selectedNaverIndex]);
 
-    setIsModalOpen(true);
+    setIsNaverModalOpen(true);
+  }
+
+  function handleEditClick(naverIndex) {
+    history.push({ pathname: "/edit", state: { naver: navers[naverIndex] } });
+  }
+
+  function handleRemoveClick(naverIndex) {
+    setSelectedNaverIndex(naverIndex);
+    setIsConfirmationModalOpen(true);
+  }
+
+  function handleRemoveNaver() {
+    // chamda a API para remover o naver (a partir do selectedNaverIndex)
+    // remover do array atual
+    setIsConfirmationModalOpen(false);
+    if (isNaverModalOpen) {
+      setIsNaverModalOpen(false);
+    }
+    setIsMessageModalOpen(true);
+
+    setTimeout(() => {
+      setIsMessageModalOpen(false);
+    }, 1500);
   }
 
   return (
     <div>
       <Header />
-      {isModalOpen && (
+
+      {isNaverModalOpen && (
         <NaverModal
-          setModal={setIsModalOpen}
+          setModal={setIsNaverModalOpen}
           naver={navers[selectedNaverIndex]}
+          handleEditClick={() => handleEditClick(selectedNaverIndex)}
+          handleRemoveClick={() => handleRemoveClick(selectedNaverIndex)}
         />
+      )}
+      {isConfirmationModalOpen && (
+        <ConfirmationModal
+          setModal={setIsConfirmationModalOpen}
+          confirmationFunction={handleRemoveNaver}
+        />
+      )}
+      {isMessageModalOpen && (
+        <MessageModal setModal={setIsMessageModalOpen} type="remove" />
       )}
       <div className="home-container">
         <div className="home-header">
           <h1>Navers</h1>
-          <button>Adicionar Naver</button>
+          <Link to="/create">
+            <span>Adicionar Naver</span>
+          </Link>
         </div>
         <div className="navers-container">
           {navers.map((naver, index) => (
-            <NaverCard key={naver.id} onClick={() => handleCardClick(index)} />
+            <NaverCard
+              key={naver.id}
+              naver={naver}
+              onClick={() => handleCardClick(index)}
+              handleEditClick={() => handleEditClick(index)}
+              handleRemoveClick={() => handleRemoveClick(index)}
+            />
           ))}
         </div>
       </div>

@@ -1,5 +1,13 @@
 # Getting Started with Create React App
 
+## TODO
+
+- ~~Página de criação/edição~~
+- ~~Modal de confirmação e mensagem~~
+- Funcionalidade dos botões remover e editar (api)
+- Funcionalidade do botão adicionar (api)
+- Documentar
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

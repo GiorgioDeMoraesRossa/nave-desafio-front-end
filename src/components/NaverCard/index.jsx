@@ -1,6 +1,11 @@
 import "./styles.css";
 
-export default function NaverCard({ onClick }) {
+export default function NaverCard({
+  naver,
+  onClick,
+  handleEditClick,
+  handleRemoveClick,
+}) {
   return (
     <div className="card-container">
       <img
@@ -8,11 +13,11 @@ export default function NaverCard({ onClick }) {
         alt={`Foto do Juliano Reis`}
         onClick={onClick}
       />
-      <span>Juliano Reis</span>
-      <p>Front-end dev</p>
+      <span>{naver.name}</span>
+      <p>{naver.job_role}</p>
       <div className="card-icons-div">
-        <img src="/icons/deleteIcon.svg" />
-        <img src="/icons/editIcon.svg" />
+        <img src="/icons/deleteIcon.svg" onClick={handleRemoveClick} />
+        <img src="/icons/editIcon.svg" onClick={handleEditClick} />
       </div>
     </div>
   );

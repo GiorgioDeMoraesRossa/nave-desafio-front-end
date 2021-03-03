@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
-import { Route, BrowserRouter } from "react-router-dom";
+import { Route, BrowserRouter, Switch } from "react-router-dom";
 import { AuthContext } from "./contexts/authContext";
 
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import EditNaver from "./pages/EditNaver";
 
 export default function Routes() {
   const { user } = useContext(AuthContext);
@@ -13,7 +14,11 @@ export default function Routes() {
       {user === null ? (
         <Route component={Login} exact path="/" />
       ) : (
-        <Route component={Home} exact path="/" />
+        <Switch>
+          <Route component={Home} exact path="/" />
+          <Route component={EditNaver} path="/edit" />
+          <Route component={EditNaver} path="/create" />
+        </Switch>
       )}
     </BrowserRouter>
   );

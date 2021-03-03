@@ -1,0 +1,54 @@
+.confirmation-modal-container {
+  background: var(--background-card-color);
+  width: 37rem;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  padding: 2rem;
+  z-index: 4;
+}
+
+.confirmation-modal-container h1 {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.confirmation-modal-container p {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}
+
+.buttons-div {
+  align-self: flex-end;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 23.5rem;
+}
+
+.buttons-div button {
+  align-self: flex-end;
+
+  border: 0;
+  font-size: 0.9rem;
+
+  width: 11rem;
+  height: 2.5rem;
+}
+
+.buttons-div button:first-child {
+  background-color: var(--text-color);
+  color: var(--primary-color);
+  border: solid 0.05rem var(--primary-color);
+}
+
+.buttons-div button:last-child {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+}

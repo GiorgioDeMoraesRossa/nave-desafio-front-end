@@ -1,0 +1,30 @@
+.message-modal-container {
+  background: var(--background-card-color);
+  width: 37rem;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  padding: 2rem;
+
+  z-index: 4;
+}
+
+.message-modal-container h1 {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+.message-modal-container p {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}
+
+#closeButton {
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+
+  cursor: pointer;
+}

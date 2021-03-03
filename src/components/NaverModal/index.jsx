@@ -1,24 +1,13 @@
 import "./styles.css";
 
-function calculateDateUntilNow(dateString) {
-  const now = new Date();
-  const before = new Date(dateString);
+import { calculateDateUntilNow } from "../../utils/calculateDate";
 
-  // diferença em segundos, divide por dias, divide por 365.
-  const years = Math.floor(
-    (now.getTime() - before.getTime()) / 1000 / (60 * 60 * 24) / 365.25
-  );
-
-  // diferença em segundos, divide por dias, divide por 30 (quantidade de meses).
-  // multiplica por 12 os anos passados e faz a diferença
-  const months = Math.round(
-    (now.getTime() - before.getTime()) / 1000 / (60 * 60 * 24) / 30 - years * 12
-  );
-
-  return { years, months };
-}
-
-export default function NaverModal({ setModal, naver }) {
+export default function NaverModal({
+  setModal,
+  naver,
+  handleEditClick,
+  handleRemoveClick,
+}) {
   return (
     <div className="modal-overlay">
       <div className="modal-container">
@@ -44,8 +33,8 @@ export default function NaverModal({ setModal, naver }) {
             <p>{naver.project}</p>
           </div>
           <div className="card-icons-div">
-            <img src="/icons/deleteIcon.svg" />
-            <img src="/icons/editIcon.svg" />
+            <img src="/icons/deleteIcon.svg" onClick={handleRemoveClick} />
+            <img src="/icons/editIcon.svg" onClick={handleEditClick} />
           </div>
         </div>
       </div>

@@ -17,14 +17,24 @@
   font-size: 2.5rem;
 }
 
-.home-header button {
+.home-header a {
+  text-decoration: none;
+  text-align: center;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   background-color: var(--primary-color);
-  color: var(--text-color);
 
   border: 0;
   font-size: 0.9rem;
 
   width: 11rem;
+}
+
+.home-container a span {
+  color: var(--text-color);
 }
 
 .navers-container {
