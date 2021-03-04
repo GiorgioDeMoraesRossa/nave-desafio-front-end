@@ -8,23 +8,29 @@ export default function Login() {
   const { Login } = useContext(AuthContext);
 
   function handleSubmit() {
-    // if (escreveu email e senha)
-    Login(email);
+    if (email != "" && password != "") {
+      Login({ email, password });
+    } else {
+      alert("Preencha os dois campos!");
+    }
   }
 
   return (
     <div className="login-container">
       <div className="login-content">
         <img src="/logo.svg" alt="Logo da Nave.rs" />
-        <label>E-mail</label>
+        <label htmlFor="email">E-mail</label>
         <input
           onChange={(e) => setEmail(e.target.value)}
           placeholder="E-mail"
+          id="email"
         />
-        <label>Senha</label>
+        <label htmlFor="senha">Senha</label>
         <input
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Senha"
+          id="senha"
+          type="password"
         />
         <button onClick={handleSubmit}>Entrar</button>
       </div>

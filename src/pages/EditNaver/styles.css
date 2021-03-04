@@ -69,6 +69,17 @@
   border: solid 0.05rem var(--primary-color);
 }
 
+.field input::-webkit-outer-spin-button,
+.field input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+.field input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
 .edit-content form button {
   background-color: var(--primary-color);
   color: var(--text-color);

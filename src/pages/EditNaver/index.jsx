@@ -90,7 +90,7 @@ export default function EditNaver({ handleEditClick }) {
                 <div className="field">
                   <label htmlFor="idade">Idade</label>
                   <input
-                    type="text"
+                    type="number"
                     id="idade"
                     placeholder={
                       naver != null
@@ -102,7 +102,7 @@ export default function EditNaver({ handleEditClick }) {
                 <div className="field">
                   <label htmlFor="tempoEmpresa">Tempo de empresa</label>
                   <input
-                    type="text"
+                    type="number"
                     id="tempoEmpresa"
                     placeholder={
                       naver != null

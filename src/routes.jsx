@@ -7,11 +7,11 @@ import Login from "./pages/Login";
 import EditNaver from "./pages/EditNaver";
 
 export default function Routes() {
-  const { user } = useContext(AuthContext);
+  const { token } = useContext(AuthContext);
 
   return (
     <BrowserRouter>
-      {user === null ? (
+      {token === "" ? (
         <Route component={Login} exact path="/" />
       ) : (
         <Switch>

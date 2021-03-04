@@ -1,20 +1,41 @@
 import { createContext, useState, useEffect } from "react";
-
+import api from "../services/api";
 export const AuthContext = createContext({});
 
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);
+  const [token, setToken] = useState("");
 
-  function Login(user) {
-    setUser(user);
+  // procura no localStorage por um token
+  useEffect(() => {
+    const storedToken = localStorage.getItem("token");
+    if (storedToken) {
+      setToken(storedToken);
+    }
+  }, []);
+
+  // Atualiza headers (tanto para login quanto logout)
+  useEffect(() => {
+    api.defaults.headers.common["Authorization"] = token;
+  }, [token]);
+
+  async function Login(user) {
+    // chama API com dados passsados, seta header auth
+    const loginResponse = await api
+      .post("/users/login", user)
+      .then((response) => response.data)
+      .catch((error) => console.log("Err: ", error.message));
+
+    setToken(`Bearer ${loginResponse.token}`);
+    localStorage.setItem("token", `Bearer ${loginResponse.token}`);
   }
 
   function Logout() {
-    setUser(null);
+    setToken("");
+    localStorage.removeItem("token");
   }
 
   return (
-    <AuthContext.Provider value={{ user: user, Login, Logout }}>
+    <AuthContext.Provider value={{ token, Login, Logout }}>
       {children}
     </AuthContext.Provider>
   );
