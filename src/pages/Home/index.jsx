@@ -43,9 +43,17 @@ export default function Home() {
     setIsConfirmationModalOpen(true);
   }
 
-  function handleRemoveNaver() {
+  async function handleRemoveNaver() {
     // chamda a API para remover o naver (a partir do selectedNaverIndex)
+    await api
+      .delete(`navers/${navers[selectedNaverIndex].id}`)
+      .then()
+      .catch((error) => console.log("Handle error:", error.message));
+
     // remover do array atual
+    navers.splice(selectedNaverIndex, 1);
+    setSelectedNaverIndex(0);
+
     setIsConfirmationModalOpen(false);
     if (isNaverModalOpen) {
       setIsNaverModalOpen(false);

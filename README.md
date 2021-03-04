@@ -4,8 +4,8 @@
 
 - ~~Página de criação/edição~~
 - ~~Modal de confirmação e mensagem~~
-- Funcionalidade do botão adicionar (api)
-- Funcionalidade dos botões remover e editar (api)
+- ~~Funcionalidade do botão adicionar (api)~~
+- ~~Funcionalidade dos botões remover e editar (api)~~
 - Tratamento de erros (respostas da API, formularios mal preenchidos - validação)
 - Documentar
 
