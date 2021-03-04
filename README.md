@@ -8,6 +8,7 @@ Clonar o repositório
 
 Rodar os comandos
 `yarn add`
+
 `yarn start`
 
 Abrir [http://localhost:3000](http://localhost:3000) no browser.
