@@ -1,6 +1,7 @@
 /* 
 Página para criação ou edição de um naver (nome de rota 'create' ou 'edit' 
-define se é criação ou edição) 
+define se é criação ou edição)
+Na página de edição utiliza os dados atuais como placeholder
 */
 import { useState } from "react";
 import { useLocation, useHistory } from "react-router-dom";
@@ -19,24 +20,36 @@ export default function EditNaver({ handleEditClick }) {
   const location = useLocation();
   const naver = location.state ? location.state.naver : null;
   const history = useHistory();
+  /* valores do formulario */
   const [name, setName] = useState("");
   const [cargo, setCargo] = useState("");
   const [idade, setIdade] = useState(null);
   const [tempEmpresa, setTempEmpresa] = useState(null);
   const [projetos, setProjetos] = useState("");
   const [url, setUrl] = useState("");
+  /* controle do modal de mensagem (confirmação das ações) */
   const [isMessageModalOpen, setIsMessageModalOpen] = useState(false);
 
+  /* Verifica os campos preenchidos e faz um post ou  put */
   async function handleSubmit(event) {
     event.preventDefault();
 
-    // VALIDAÇÃO
-
-    // faz requisição para a api
     if (location.pathname === "/create") {
       // post
       //checa se todos foram digitados
-      await api
+      if (
+        name === "" ||
+        cargo === "" ||
+        idade === null ||
+        tempEmpresa === null ||
+        projetos === "" ||
+        url === ""
+      ) {
+        alert("Preencha todos os campos!");
+        return;
+      }
+
+      const createResponse = await api
         .post("/navers", {
           name,
           job_role: cargo,
@@ -45,41 +58,66 @@ export default function EditNaver({ handleEditClick }) {
           project: projetos,
           url,
         })
-        .then()
-        .catch((error) => console.log("HANDLE ERROR"));
+        .then((response) => response)
+        .catch(() => alert("Não foi possível criar o naver, tente novamente!"));
 
-      setIsMessageModalOpen(true);
+      if (createResponse !== undefined) {
+        // deu certo
+        setIsMessageModalOpen(true);
 
-      setTimeout(() => {
-        setIsMessageModalOpen(false);
-        history.push("/");
-      }, 1500);
+        setTimeout(() => {
+          setIsMessageModalOpen(false);
+          history.push("/");
+        }, 1500);
+      }
     } else {
       // put
-      await api
-        .put(`/navers/${naver.id}`, {
-          name: name === "" ? naver.name : name,
-          job_role: cargo === "" ? naver.job_role : cargo,
-          admission_date:
-            tempEmpresa === null
-              ? formatDate(new Date(naver.admission_date))
-              : calculateDateFromNow(tempEmpresa),
-          birthdate:
-            idade === null
-              ? formatDate(new Date(naver.birthdate))
-              : calculateDateFromNow(idade),
-          project: projetos === "" ? naver.project : projetos,
-          url: url === "" ? naver.url : url,
-        })
-        .then()
-        .catch((error) => console.log("HANDLE ERROR"));
+      // se nenhum campo foi escrito, não manda request
+      if (
+        name === "" &&
+        cargo === "" &&
+        idade === null &&
+        tempEmpresa === null &&
+        projetos === "" &&
+        url === ""
+      ) {
+        setIsMessageModalOpen(true);
 
-      setIsMessageModalOpen(true);
+        setTimeout(() => {
+          setIsMessageModalOpen(false);
+          history.push("/");
+        }, 1500);
+      } else {
+        const editResponse = await api
+          .put(`/navers/${naver.id}`, {
+            name: name === "" ? naver.name : name,
+            job_role: cargo === "" ? naver.job_role : cargo,
+            admission_date:
+              tempEmpresa === null
+                ? formatDate(new Date(naver.admission_date))
+                : calculateDateFromNow(tempEmpresa),
+            birthdate:
+              idade === null
+                ? formatDate(new Date(naver.birthdate))
+                : calculateDateFromNow(idade),
+            project: projetos === "" ? naver.project : projetos,
+            url: url === "" ? naver.url : url,
+          })
+          .then((response) => response)
+          .catch(() =>
+            alert("Não foi possível atualizar o naver, tente novamente!")
+          );
 
-      setTimeout(() => {
-        setIsMessageModalOpen(false);
-        history.push("/");
-      }, 1500);
+        if (editResponse !== undefined) {
+          // deu certo
+          setIsMessageModalOpen(true);
+
+          setTimeout(() => {
+            setIsMessageModalOpen(false);
+            history.push("/");
+          }, 1500);
+        }
+      }
     }
   }
 

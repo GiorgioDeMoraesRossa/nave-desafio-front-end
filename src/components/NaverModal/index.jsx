@@ -1,3 +1,4 @@
+/* Modal de um naver, mostra as informações em detalhe */
 import { useState, useEffect } from "react";
 
 import api from "../../services/api";
@@ -12,11 +13,20 @@ export default function NaverModal({
 }) {
   const [naver, setNaver] = useState(null);
 
+  /* Ao receber um naverId como prop, faz uma requisição pelo usuário mais atualizado */
   useEffect(() => {
     api
       .get(`/navers/${naverId}`)
       .then((response) => setNaver(response.data))
-      .catch((error) => console.log("HANDLE ERR"));
+      .catch((error) => {
+        if (error.response.status === 404) {
+          alert("Não foi possível encontrar o usuário");
+        } else {
+          alert("Ocorreu um erro, por favor tente novamente");
+        }
+        /* Fecha o modal automaticamente se acontecer um erro */
+        setModal(false);
+      });
   }, [naverId]);
 
   return (

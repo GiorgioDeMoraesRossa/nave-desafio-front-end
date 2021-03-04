@@ -1,3 +1,4 @@
+/* Card utilizado para mostrar os navers na Home, com botões de remover e editar, e com imagem clicável */
 import "./styles.css";
 
 export default function NaverCard({

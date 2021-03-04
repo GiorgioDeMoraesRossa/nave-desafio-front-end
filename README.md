@@ -8,8 +8,8 @@
 - ~~Funcionalidade dos botões remover e editar (api)~~
 - ~~Rotas autenticadas redirecionarem para '/'~~
 - ~~Responsividade (atentar para grid)~~
-- Tratamento de erros (respostas da API, formularios mal preenchidos - validação)
-- Documentar
+- ~~Tratamento de erros (respostas da API, formularios não preenchidos)~~
+- ~~Documentar~~
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

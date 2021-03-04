@@ -1,3 +1,4 @@
+/* Arquivo que define a base da API (seria para setar headers também) */
 import axios from "axios";
 
 const api = axios.create({

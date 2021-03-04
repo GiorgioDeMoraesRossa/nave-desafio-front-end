@@ -1,3 +1,4 @@
+/* Header da aplicação, aparece em todas as páginas, utiliza função logout do context */
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/authContext";

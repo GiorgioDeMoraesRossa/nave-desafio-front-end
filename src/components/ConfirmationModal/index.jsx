@@ -1,3 +1,4 @@
+/* Modal para confirmações, atualmente só confirma remoção de usuário */
 import "./styles.css";
 
 export default function ConfirmationModal({ setModal, confirmationFunction }) {

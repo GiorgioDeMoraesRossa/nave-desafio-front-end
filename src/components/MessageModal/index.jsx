@@ -1,3 +1,6 @@
+/* Modal utilizado para informar o usuário, apenas mostra uma mensagem
+possui um tipo que define qual mensagem mostrar
+*/
 import "./styles.css";
 
 export default function MessageModal({ setModal, type }) {
