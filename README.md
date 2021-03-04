@@ -4,7 +4,7 @@
 
 Clonar o repositório
 
-`git clone https://github.com/facebook/create-react-app`
+`git clone https://github.com/GiorgioDeMoraesRossa/nave-desafio-front-end`
 
 Rodar os comandos
 
