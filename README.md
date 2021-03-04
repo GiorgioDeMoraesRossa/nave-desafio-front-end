@@ -4,8 +4,9 @@
 
 - ~~Página de criação/edição~~
 - ~~Modal de confirmação e mensagem~~
-- Funcionalidade dos botões remover e editar (api)
 - Funcionalidade do botão adicionar (api)
+- Funcionalidade dos botões remover e editar (api)
+- Tratamento de erros (respostas da API, formularios mal preenchidos - validação)
 - Documentar
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

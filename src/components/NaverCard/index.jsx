@@ -8,16 +8,21 @@ export default function NaverCard({
 }) {
   return (
     <div className="card-container">
-      <img
-        src="https://github.com/GiorgioDeMoraesRossa.png"
-        alt={`Foto do Juliano Reis`}
-        onClick={onClick}
-      />
+      <img src={`${naver.url}`} alt="foto de perfil" onClick={onClick} />
       <span>{naver.name}</span>
       <p>{naver.job_role}</p>
       <div className="card-icons-div">
-        <img src="/icons/deleteIcon.svg" onClick={handleRemoveClick} />
-        <img src="/icons/editIcon.svg" onClick={handleEditClick} />
+        <img
+          src="/icons/deleteIcon.svg"
+          onClick={handleRemoveClick}
+          alt="Deletar naver"
+        />
+
+        <img
+          src="/icons/editIcon.svg"
+          onClick={handleEditClick}
+          alt="Editar naver"
+        />
       </div>
     </div>
   );

@@ -7,9 +7,9 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const { Login } = useContext(AuthContext);
 
-  function handleSubmit() {
-    if (email != "" && password != "") {
-      Login({ email, password });
+  async function handleSubmit() {
+    if (email !== "" && password !== "") {
+      await Login({ email, password });
     } else {
       alert("Preencha os dois campos!");
     }

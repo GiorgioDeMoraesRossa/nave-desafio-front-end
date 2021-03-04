@@ -9,14 +9,10 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
     if (storedToken) {
+      api.defaults.headers.common["Authorization"] = storedToken;
       setToken(storedToken);
     }
   }, []);
-
-  // Atualiza headers (tanto para login quanto logout)
-  useEffect(() => {
-    api.defaults.headers.common["Authorization"] = token;
-  }, [token]);
 
   async function Login(user) {
     // chama API com dados passsados, seta header auth
@@ -25,6 +21,10 @@ export function AuthProvider({ children }) {
       .then((response) => response.data)
       .catch((error) => console.log("Err: ", error.message));
 
+    api.defaults.headers.common[
+      "Authorization"
+    ] = `Bearer ${loginResponse.token}`;
+
     setToken(`Bearer ${loginResponse.token}`);
     localStorage.setItem("token", `Bearer ${loginResponse.token}`);
   }
@@ -32,6 +32,7 @@ export function AuthProvider({ children }) {
   function Logout() {
     setToken("");
     localStorage.removeItem("token");
+    api.defaults.headers.common["Authorization"] = "";
   }
 
   return (

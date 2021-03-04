@@ -2,7 +2,11 @@ import "./styles.css";
 
 export default function MessageModal({ setModal, type }) {
   const text =
-    type == "remove" ? "excluído" : type == "create" ? "criado" : "atualizado";
+    type === "remove"
+      ? "excluído"
+      : type === "create"
+      ? "criado"
+      : "atualizado";
 
   return (
     <div className="modal-overlay">

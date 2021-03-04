@@ -1,5 +1,5 @@
 /* */
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 
 import Header from "../../components/Header";
@@ -8,6 +8,7 @@ import NaverModal from "../../components/NaverModal";
 import ConfirmationModal from "../../components/ConfirmationModal";
 import MessageModal from "../../components/MessageModal";
 
+import { AuthContext } from "../../contexts/authContext";
 import api from "../../services/api";
 import "./styles.css";
 
@@ -19,12 +20,13 @@ export default function Home() {
   const [navers, setNavers] = useState([]);
   const history = useHistory();
 
+  const { token } = useContext(AuthContext);
+
   useEffect(() => {
-    console.log("token: ", api.defaults.headers.common["Authorization"]);
     api.get("/navers").then((response) => {
       setNavers(response.data);
     });
-  }, []);
+  }, [token]);
 
   function handleCardClick(naverIndex) {
     setSelectedNaverIndex(naverIndex);
@@ -62,7 +64,7 @@ export default function Home() {
       {isNaverModalOpen && (
         <NaverModal
           setModal={setIsNaverModalOpen}
-          naver={navers[selectedNaverIndex]}
+          naverId={navers[selectedNaverIndex].id}
           handleEditClick={() => handleEditClick(selectedNaverIndex)}
           handleRemoveClick={() => handleRemoveClick(selectedNaverIndex)}
         />
