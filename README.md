@@ -7,6 +7,7 @@ Clonar o repositório
 `git clone https://github.com/facebook/create-react-app`
 
 Rodar os comandos
+
 `yarn add`
 
 `yarn start`
