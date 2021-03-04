@@ -40,7 +40,35 @@
 .navers-container {
   display: grid;
   grid-template-columns: repeat(4, 19rem);
-  /* media query para diminuir colunas*/
+
   align-content: center;
   justify-content: space-between;
+}
+
+/* media query para diminuir colunas do grid */
+@media (max-width: 1150px) {
+  .navers-container {
+    grid-template-columns: repeat(3, 19rem);
+  }
+}
+
+/* com 2 colunas space-between fica muito distante em grandes dimensões */
+@media (max-width: 820px) and (min-width: 700px) {
+  .navers-container {
+    grid-template-columns: repeat(2, 25rem);
+    justify-content: center;
+  }
+}
+
+@media (max-width: 700px) {
+  .navers-container {
+    grid-template-columns: repeat(2, 19rem);
+  }
+}
+
+@media (max-width: 380px) {
+  .navers-container {
+    grid-template-columns: repeat(1, 19rem);
+    justify-content: center;
+  }
 }
